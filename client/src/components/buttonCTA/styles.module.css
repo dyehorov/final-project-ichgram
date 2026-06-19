@@ -1,0 +1,38 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 0;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  max-width: 268px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.9;
+  color: #efefef;
+  cursor: not-allowed;
+  background-color: #006ab1;
+}
+
+.primary {
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #45aaed;
+}
+
+.secondary {
+  background-color: #efefef;
+  color: #000;
+}
+
+.strictWidth {
+  max-width: 160px;
+}

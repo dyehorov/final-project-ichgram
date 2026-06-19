@@ -1,0 +1,23 @@
+.form div {
+  margin-bottom: 6px;
+  text-align: start;
+}
+
+.form div:last-of-type {
+  margin-bottom: 26px;
+}
+
+.terms {
+  font-size: 12px;
+  color: #737373;
+  line-height: 16px;
+}
+
+.terms:last-of-type {
+  margin-bottom: 26px;
+}
+
+.termsLink {
+  text-decoration: none;
+  color: #00376b;
+}

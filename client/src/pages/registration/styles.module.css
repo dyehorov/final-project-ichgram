@@ -1,0 +1,5 @@
+.registerContainer {
+  display: flex;
+  justify-content: center;
+  padding: 81px 0;
+}

@@ -1,0 +1,53 @@
+.aside {
+  padding: 28px 25px;
+  width: 250px;
+  border-right: 1px solid #dbdbdb;
+  height: 100%;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  max-width: 100%;
+  width: 97px;
+  object-fit: contain;
+}
+
+.link,
+.activeLink {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #000;
+  text-decoration: none;
+  height: 25px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+.link {
+  font-weight: 400;
+}
+
+.activeLink {
+  font-weight: 700;
+}
+
+.link,
+.activeLink:hover {
+  cursor: pointer;
+}
