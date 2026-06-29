@@ -5,7 +5,7 @@ import {
   toggleFollowUser,
 } from "../controllers/userController.js"
 import authMiddleware from "../middlewares/authMiddleware.js"
-import { uploadAvatarMiddleware } from "../middlewares/uploadPostImageMiddleware.js"
+import { uploadAvatarMiddleware } from "../middlewares/uploadImageMiddleware.js"
 
 const router = express.Router()
 
