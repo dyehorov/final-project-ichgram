@@ -18,7 +18,7 @@ export default function authMiddleware(req, res, next) {
       return res.status(403).json({ success: false, message: "Forbidden!" })
     }
 
-    req.user = data.id
+    req.user = data
     next()
   })
 }
