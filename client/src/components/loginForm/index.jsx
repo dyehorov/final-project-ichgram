@@ -1,16 +1,18 @@
 import styles from "./styles.module.css"
 import { useForm } from "react-hook-form"
-import Input from "../../components/Input"
-import ButtonCTA from "../../components/ButtonCTA"
+import Input from "../../components/input"
+import ButtonCTA from "../../components/buttonCTA"
 import loginFormValidation from "../../validator/forms/loginForm"
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router"
-
-const BASE_URL = "http://127.0.0.1:3333"
+import { useDispatch } from "react-redux"
+import { setCredentials } from "../../redux/slices/authSlice"
+import { VITE_SERVER_API_URL } from "../../config/api"
 
 export default function LoginForm() {
   let navigate = useNavigate()
+  const dispatch = useDispatch()
   const [isError, setIsError] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
@@ -24,7 +26,10 @@ export default function LoginForm() {
 
   const loginUser = async data => {
     try {
-      const response = await axios.post(`${BASE_URL}/auth/login`, data)
+      const response = await axios.post(
+        `${VITE_SERVER_API_URL}/auth/login`,
+        data,
+      )
 
       if (!response.data.token) {
         setIsError("Token was not returned by server")
@@ -33,7 +38,14 @@ export default function LoginForm() {
 
       setIsError(false)
       setIsSuccess(response.data.message)
-      localStorage.setItem("token", response.data.token)
+
+      dispatch(
+        setCredentials({
+          user: response.data.user,
+          token: response.data.token,
+        }),
+      )
+
       navigate("/home")
     } catch (error) {
       setIsError(

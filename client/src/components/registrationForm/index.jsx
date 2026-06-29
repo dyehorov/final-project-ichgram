@@ -1,13 +1,12 @@
 import styles from "./styles.module.css"
 import { useForm } from "react-hook-form"
-import Input from "../../components/Input"
-import ButtonCTA from "../../components/ButtonCTA"
+import Input from "../../components/input"
+import ButtonCTA from "../../components/buttonCTA"
 import registerFormValidation from "../../validator/forms/registerForm"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import axios from "axios"
-
-const BASE_URL = "http://127.0.0.1:3333"
+import { VITE_SERVER_API_URL } from "../../config/api"
 
 export default function RegisterForm() {
   const [isError, setIsError] = useState(false)
@@ -25,7 +24,10 @@ export default function RegisterForm() {
 
   const registerUser = async data => {
     try {
-      const response = await axios.post(`${BASE_URL}/auth/register`, data)
+      const response = await axios.post(
+        `${VITE_SERVER_API_URL}/auth/register`,
+        data,
+      )
 
       reset()
       setIsError(false)
@@ -35,7 +37,8 @@ export default function RegisterForm() {
       console.log(error)
 
       setIsError(
-        error.response.data.message || "Something went wrong, try again later",
+        error.response?.data?.message ||
+          "Something went wrong, try again later",
       )
     }
   }
