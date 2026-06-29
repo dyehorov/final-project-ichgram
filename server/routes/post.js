@@ -6,7 +6,7 @@ import {
   togglePostLike,
 } from "../controllers/postController.js"
 import authMiddleware from "../middlewares/authMiddleware.js"
-import { uploadPostImageMiddleware } from "../middlewares/uploadPostImageMiddleware.js"
+import { uploadPostImageMiddleware } from "../middlewares/uploadImageMiddleware.js"
 
 const router = express.Router()
 

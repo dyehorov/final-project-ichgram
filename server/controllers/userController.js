@@ -258,7 +258,7 @@ export const editProfile = async (req, res) => {
     }
 
     if (req.file) {
-      updateData.avatar = `/uploads/posts/${req.file.filename}`
+      updateData.avatar = `/uploads/avatars/${req.file.filename}`
     }
 
     const updatedUser = await User.findByIdAndUpdate(userId, updateData, {
