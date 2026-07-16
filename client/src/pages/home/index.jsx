@@ -8,6 +8,12 @@ import Modal from "../../components/modal"
 import PostDetailsModal from "../../components/postDetailsModal"
 import { useNavigate } from "react-router"
 
+function normalizeId(value) {
+  if (!value) return ""
+
+  return typeof value === "object" ? value._id || String(value) : String(value)
+}
+
 function formatRelativeDate(date) {
   if (!date) return ""
 
@@ -98,6 +104,28 @@ export default function Home() {
     }
   }
 
+  function handleCommentCreated(postId, newComment) {
+    setPosts(currentPosts =>
+      currentPosts.map(post =>
+        post._id === postId
+          ? {
+              ...post,
+              comments: [...(post.comments || []), newComment._id],
+            }
+          : post,
+      ),
+    )
+
+    setSelectedPost(currentPost =>
+      currentPost?._id === postId
+        ? {
+            ...currentPost,
+            comments: [...(currentPost.comments || []), newComment._id],
+          }
+        : currentPost,
+    )
+  }
+
   if (isLoading) {
     return (
       <main className={styles.home}>
@@ -146,7 +174,9 @@ export default function Home() {
       <section className={styles.feed}>
         {posts.map(post => {
           const author = post.author || post.user
-          const isLiked = post.likes?.some(likeId => likeId === currentUserId)
+          const isLiked = post.likes?.some(
+            likeId => normalizeId(likeId) === normalizeId(currentUserId),
+          )
 
           return (
             <article key={post._id} className={styles.post}>
@@ -238,6 +268,7 @@ export default function Home() {
             post={selectedPost}
             onToggleLike={() => handleToggleLike(selectedPost._id)}
             isLikePending={isLikePending}
+            onCommentCreated={handleCommentCreated}
           />
         </Modal>
       )}

@@ -1,0 +1,21 @@
+.explore {
+  width: 100%;
+  min-height: 100vh;
+  padding: 48px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  width: 935px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  list-style: none;
+}

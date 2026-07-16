@@ -39,12 +39,29 @@
   color: #737373;
 }
 
-.meta button {
-  border: none;
+.meta .usernameButton,
+.captionUsername {
+  border: 0;
   background: transparent;
-  color: #0095f6;
+  padding: 0;
+  color: #1a1a1a;
+  font-size: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+
+.usernameButton:hover,
+.captionUsername:hover {
+  opacity: 0.7;
+}
+
+.imageButton {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: block;
 }
 
 .image {
@@ -59,6 +76,26 @@
   gap: 12px;
   margin-top: 10px;
   font-size: 22px;
+}
+
+.actionButton,
+.actionActive {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #1a1a1a;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.actionActive {
+  color: #ed4956;
+}
+
+.actionButton:disabled,
+.actionActive:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .likes {
