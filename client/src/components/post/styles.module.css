@@ -1,0 +1,49 @@
+.post {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: block;
+}
+
+.post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.post:hover .overlay {
+  opacity: 0.9;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.stat i {
+  font-size: 20px;
+  color: #000;
+}

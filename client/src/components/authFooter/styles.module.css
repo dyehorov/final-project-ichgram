@@ -1,0 +1,15 @@
+.authFooter {
+  text-align: center;
+  padding: 26px 0;
+  border: 1px solid #dbdbdb;
+  margin-top: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: #0095f6;
+}
+
+.link:hover {
+  color: #006fb9;
+}

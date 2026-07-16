@@ -1,0 +1,57 @@
+.profile {
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 50px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.top button {
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  gap: 35px;
+  margin: 20px 0;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.grid div {
+  aspect-ratio: 1 / 1;
+  background: #ddd;
+}
