@@ -10,3 +10,72 @@
   z-index: 20;
   padding: 20px 24px;
 }
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-radius: 12px;
+}
+
+.card:hover {
+  background: #f7f7f7;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1a1a1a;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.time {
+  color: #737373;
+}
+
+.previewImage {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
 import { setCredentials } from "../../redux/slices/authSlice"
 import { VITE_SERVER_API_URL } from "../../config/api"
+import { Link } from "react-router"
 
 export default function LoginForm() {
   let navigate = useNavigate()
@@ -85,9 +86,9 @@ export default function LoginForm() {
 
       <p className={styles.loginDivider}>OR</p>
 
-      <a href="#" className={styles.link}>
+      <Link to="/forgot-password" className={styles.link}>
         Forgot password?
-      </a>
+      </Link>
     </form>
   )
 }

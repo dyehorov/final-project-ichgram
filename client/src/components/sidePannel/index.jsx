@@ -1,4 +1,3 @@
-import styles from "./styles.module.css"
 import SearchModal from "../searchModal"
 import NotificationsModal from "../notificationsModal"
 // import CreatePanel from "../createPanel"

@@ -4,10 +4,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 420px);
   background: #fff;
+  overflow: hidden;
 }
 
 .imageWrap {
   background: #111;
+  min-height: 0;
 }
 
 .image {
@@ -22,6 +24,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  max-height: 88vh;
 }
 
 .header {
@@ -42,6 +45,7 @@
 .username {
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .fullName {
@@ -51,6 +55,7 @@
 
 .content {
   flex: 1;
+  min-height: 0;
   padding: 20px;
   overflow: auto;
 }
@@ -60,11 +65,48 @@
   line-height: 1.5;
   color: #1a1a1a;
   white-space: pre-wrap;
+  margin-bottom: 20px;
 }
 
 .empty {
   font-size: 14px;
   color: #737373;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commentAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.commentBody {
+  min-width: 0;
+}
+
+.commentText {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.commentUsername {
+  font-weight: 600;
 }
 
 .footer {
@@ -105,6 +147,38 @@
   color: #737373;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.commentForm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.commentInput {
+  flex: 1;
+  border: 0;
+  outline: none;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.commentSubmit {
+  border: 0;
+  background: transparent;
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.commentSubmit:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 @media (max-width: 900px) {

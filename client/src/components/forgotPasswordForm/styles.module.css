@@ -1,0 +1,51 @@
+.form div {
+  margin-bottom: 6px;
+  text-align: start;
+}
+
+.form div:last-of-type {
+  margin-bottom: 22px;
+}
+
+.responseMessage {
+  margin-bottom: 24px;
+  border: 1px solid #dbdbdb;
+  font-size: 13px;
+  padding: 4px 8px;
+  text-align: start;
+}
+
+.divider {
+  margin-top: 22px;
+  position: relative;
+  color: #737373;
+  margin-bottom: 24px;
+}
+
+.divider::before {
+  position: absolute;
+  content: "";
+  width: 40%;
+  top: 9px;
+  left: 0;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.divider::after {
+  position: absolute;
+  content: "";
+  width: 40%;
+  top: 9px;
+  right: 0;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.createAccountLink {
+  display: inline-block;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+}

@@ -21,6 +21,27 @@
   object-fit: contain;
 }
 
+.compactHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.compactHeader img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 20px;
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
 .subtitle {
   font-size: 16px;
   color: #737373;

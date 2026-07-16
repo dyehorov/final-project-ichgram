@@ -159,7 +159,7 @@ export default function Aside({ activePanel, onOpenPanel, onClosePanel }) {
         className={styles.logoutButton}
         onClick={() => dispatch(logout())}
       >
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+        <i className="fa-solid fa-arrow-right-from-bracket"></i> Log out
       </button>
     </aside>
   )

@@ -110,7 +110,11 @@ export default function CreatePostModal({ onSuccess }) {
           <div className={styles.user}>
             <img
               className={styles.avatar}
-              src={user?.avatar || avatarPlaceholder}
+              src={
+                user.avatar
+                  ? `${VITE_SERVER_API_URL}${user.avatar}`
+                  : avatarPlaceholder
+              }
               alt="User avatar"
             />
 
