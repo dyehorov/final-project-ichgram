@@ -231,13 +231,16 @@ export default function Profile() {
               />
             )}
             {!isOwnProfile && (
-              <ButtonCTA
-                text={isFollowing ? "Following" : "Follow"}
-                variant={isFollowing ? "secondary" : "primary"}
-                strictWidth={true}
-                disabled={isFollowPending}
-                onClick={handleToggleFollow}
-              />
+              <>
+                <ButtonCTA
+                  text={isFollowing ? "Following" : "Follow"}
+                  variant={isFollowing ? "secondary" : "primary"}
+                  strictWidth={true}
+                  disabled={isFollowPending}
+                  onClick={handleToggleFollow}
+                />
+                <ButtonCTA text={"Message"} variant="secondary" />
+              </>
             )}
           </div>
 
