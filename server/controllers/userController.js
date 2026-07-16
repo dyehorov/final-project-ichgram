@@ -99,6 +99,51 @@ export const loginUser = async (req, res) => {
   }
 }
 
+// POST /auth/forgot-password - reset password by email
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email, password } = req.body
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and new password are required",
+      })
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must have at least have 8 characters",
+      })
+    }
+
+    const user = await User.findOne({ email })
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User with this email was not found",
+      })
+    }
+
+    user.password = await bcrypt.hash(password, 10)
+    await user.save()
+
+    res.status(200).json({
+      success: true,
+      message: "Password updated successfully",
+    })
+  } catch (error) {
+    console.error("Forgot password error:", error)
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to reset password",
+    })
+  }
+}
+
 // GET /auth/me - get current user
 export const getCurrentUser = async (req, res) => {
   try {
@@ -121,6 +166,45 @@ export const getCurrentUser = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Internal server error",
+    })
+  }
+}
+
+// GET /profile/search/users?query=...
+export const searchUsers = async (req, res) => {
+  try {
+    const query = req.query.query?.trim()
+
+    if (!query) {
+      return res.status(200).json({
+        success: true,
+        users: [],
+      })
+    }
+
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+
+    const users = await User.find({
+      $or: [
+        { username: { $regex: escapedQuery, $options: "i" } },
+        { fullName: { $regex: escapedQuery, $options: "i" } },
+      ],
+    })
+      .select("_id username fullName avatar")
+      .sort({ username: 1 })
+      .limit(20)
+      .lean()
+
+    res.status(200).json({
+      success: true,
+      users,
+    })
+  } catch (error) {
+    console.error("Search users error:", error)
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to search users",
     })
   }
 }

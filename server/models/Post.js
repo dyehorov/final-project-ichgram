@@ -15,13 +15,8 @@ const postSchema = new mongoose.Schema(
       type: String,
       maxLength: 2200,
       default: "",
+      required: true,
     },
-    likes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
   },
   { timestamps: true },
 )

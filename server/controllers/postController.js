@@ -1,15 +1,29 @@
 import Post from "../models/Post.js"
+import Like from "../models/Like.js"
+import Comment from "../models/Comment.js"
+
+async function formatPost(post) {
+  const likes = await Like.find({ post: post._id }).select("user")
+  const comments = await Comment.find({ post: post._id }).select("_id")
+
+  return {
+    ...post.toObject(),
+    likes: likes.map(like => like.user),
+    comments: comments.map(comment => comment._id),
+  }
+}
 
 export const getUserPosts = async (req, res) => {
   try {
     const posts = await Post.find({ author: req.params.userId })
       .populate("author", "username fullName avatar")
       .sort({ createdAt: -1 })
+    const formattedPosts = await Promise.all(posts.map(formatPost))
 
     res.status(200).json({
       success: true,
-      count: posts.length,
-      posts,
+      count: formattedPosts.length,
+      posts: formattedPosts,
     })
   } catch (error) {
     res.status(500).json({
@@ -42,11 +56,12 @@ export const createPost = async (req, res) => {
       "author",
       "username fullName avatar",
     )
+    const formattedPost = await formatPost(populatedPost)
 
     res.status(201).json({
       success: true,
       message: "Post created successfully",
-      post: populatedPost,
+      post: formattedPost,
     })
   } catch (error) {
     console.error("Create post error:", error)
@@ -63,10 +78,11 @@ export const getAllPosts = async (req, res) => {
     const posts = await Post.find()
       .populate("author", "username avatar")
       .sort({ createdAt: -1 })
+    const formattedPosts = await Promise.all(posts.map(formatPost))
 
     res.status(200).json({
       success: true,
-      posts,
+      posts: formattedPosts,
     })
   } catch (error) {
     console.error(error)
@@ -74,48 +90,6 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to fetch posts",
-    })
-  }
-}
-
-export const togglePostLike = async (req, res) => {
-  try {
-    const { postId } = req.params
-    const userId = req.user.id
-
-    const post = await Post.findById(postId)
-
-    if (!post) {
-      return res.status(404).json({
-        success: false,
-        message: "Post not found",
-      })
-    }
-
-    const isLiked = post.likes.some(likeId => likeId.toString() === userId)
-
-    post.likes = isLiked
-      ? post.likes.filter(likeId => likeId.toString() !== userId)
-      : [...post.likes, userId]
-
-    await post.save()
-
-    const updatedPost = await Post.findById(postId).populate(
-      "author",
-      "username fullName avatar",
-    )
-
-    res.status(200).json({
-      success: true,
-      message: isLiked ? "Like removed" : "Post liked",
-      post: updatedPost,
-    })
-  } catch (error) {
-    console.error("Toggle like error:", error)
-
-    res.status(500).json({
-      success: false,
-      message: "Failed to update like",
     })
   }
 }
